@@ -3,18 +3,18 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Hexo</title>
+  <title>golang笔试题 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="golang第一题123456789101112131415161718192021222324252627282930313233343536373839package mainfunc main() &amp;#123;	println(DeferFunc1(1))	println(DeferFunc2(1))	println(DeferFunc3(1))&amp;#125;func DeferFunc1(i">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="golang笔试题">
 <meta property="og:url" content="http://yoursite.com/2018/11/28/golang面试题/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="golang第一题123456789101112131415161718192021222324252627282930313233343536373839package mainfunc main() &amp;#123;	println(DeferFunc1(1))	println(DeferFunc2(1))	println(DeferFunc3(1))&amp;#125;func DeferFunc1(i">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-29T13:12:06.028Z">
+<meta property="og:updated_time" content="2018-12-02T06:16:48.044Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="golang笔试题">
 <meta name="twitter:description" content="golang第一题123456789101112131415161718192021222324252627282930313233343536373839package mainfunc main() &amp;#123;	println(DeferFunc1(1))	println(DeferFunc2(1))	println(DeferFunc3(1))&amp;#125;func DeferFunc1(i">
   
   
@@ -96,7 +96,7 @@
           </li>
         
           <li>
-            <a href="/shijunyi.github.io/2018/11/28/golang面试题/">(no title)</a>
+            <a href="/shijunyi.github.io/2018/11/28/golang面试题/">golang笔试题</a>
           </li>
         
       </ul>
@@ -135,6 +135,16 @@
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      golang笔试题
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="golang"><a href="#golang" class="headerlink" title="golang"></a>golang</h1><h2 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">println</span>(DeferFunc1(<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">	<span class="built_in">println</span>(DeferFunc2(<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">	<span class="built_in">println</span>(DeferFunc3(<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">DeferFunc1</span><span class="params">(i <span class="keyword">int</span>)</span><span class="params">(t <span class="keyword">int</span>)</span></span>&#123;</span><br><span class="line">	t = i</span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		t+=<span class="number">3</span></span><br><span class="line">	&#125;()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> t</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">DeferFunc2</span><span class="params">(i <span class="keyword">int</span>)</span><span class="title">int</span></span>&#123;</span><br><span class="line">	t:=i</span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		t+=<span class="number">3</span></span><br><span class="line">	&#125;()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> t</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">DeferFunc3</span><span class="params">(i <span class="keyword">int</span>)</span><span class="params">(t <span class="keyword">int</span>)</span></span>&#123;</span><br><span class="line">	t = i</span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">		t+=i</span><br><span class="line">	&#125;()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -163,7 +173,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/28/golang面试题/" data-id="cjp6hmptx0000o7yh24553ifs" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/28/golang面试题/" data-id="cjp6hu7ck0000plyhpje1zktp" class="article-share-link">Share</a>
       
       
     </footer>
