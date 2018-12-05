@@ -76,7 +76,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/shijunyi.github.io/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/shijunyi.github.io/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/shijunyi.github.io/archives/2018/12/">December 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/shijunyi.github.io/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -88,7 +88,11 @@
       <ul>
         
           <li>
-            <a href="/shijunyi.github.io/2018/12/05/GO语言并发编程——sync.WaitGroup使用/">(no title)</a>
+            <a href="/shijunyi.github.io/2018/12/05/GO语言并发编程——init函数/">GO语言并发编程——init函数</a>
+          </li>
+        
+          <li>
+            <a href="/shijunyi.github.io/2018/12/05/GO语言并发编程——sync.WaitGroup使用/">GO语言并发编程——sync.WaitGroup使用</a>
           </li>
         
           <li>
@@ -131,6 +135,52 @@
         
         <section id="main">
   
+    <article id="post-GO语言并发编程——init函数" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/shijunyi.github.io/2018/12/05/GO语言并发编程——init函数/" class="article-date">
+  <time datetime="2018-12-05T13:57:32.503Z" itemprop="datePublished">2018-12-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/shijunyi.github.io/2018/12/05/GO语言并发编程——init函数/">GO语言并发编程——init函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="GO语言并发编程——init函数"><a href="#GO语言并发编程——init函数" class="headerlink" title="GO语言并发编程——init函数"></a>GO语言并发编程——init函数</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>1 init函数是用于程序执行前做包的初始化的函数，比如初始化包里的变量等</p>
+<p>2 每个包可以拥有多个init函数</p>
+<p>3 包的每个源文件也可以拥有多个init函数</p>
+<p>4 同一个包中多个init函数的执行顺序go语言没有明确的定义(说明)</p>
+<p>5 不同包的init函数按照包导入的依赖关系决定该初始化函数的执行顺序</p>
+<p>6 init函数不能被其他函数调用，而是在main函数执行之前，自动被调用</p>
+<p>7.main函数的init函数比其它init函数先调用</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> prompt = <span class="string">"Enter a digit, e.g. 3 "</span> + <span class="string">"or %s to quit."</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> runtime.GOOS == <span class="string">"windows"</span> &#123;</span><br><span class="line">        prompt = fmt.Sprintf(prompt, <span class="string">"Ctrl+Z, Enter"</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; <span class="comment">// Unix-like</span></span><br><span class="line">        prompt = fmt.Sprintf(prompt, <span class="string">"Ctrl+D"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// the other init function in this go source file</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">"do in init"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">"do in main"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">testf</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">"do in testf"</span>)</span><br><span class="line">    <span class="comment">//if uncomment the next statment, then go build give error message : .\gprog.go:19: undefined: init</span></span><br><span class="line">    <span class="comment">//init()</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// the first init function in this go source file</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">"do in init1"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// the second init function in this go source file</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">"do in init2"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/12/05/GO语言并发编程——init函数/" data-id="cjpb8m44r00033tyhlfs1e3cf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-GO语言并发编程——sync.WaitGroup使用" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/shijunyi.github.io/2018/12/05/GO语言并发编程——sync.WaitGroup使用/" class="article-date">
@@ -140,6 +190,16 @@
   </div>
   <div class="article-inner">
     
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/shijunyi.github.io/2018/12/05/GO语言并发编程——sync.WaitGroup使用/">GO语言并发编程——sync.WaitGroup使用</a>
+    </h1>
+  
+
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
@@ -157,7 +217,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/05/GO语言并发编程——sync.WaitGroup使用/" data-id="cjpb80w770000xhyhynnm08j3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/05/GO语言并发编程——sync.WaitGroup使用/" data-id="cjpb8m44p00013tyho096u1da" class="article-share-link">Share</a>
       
       
     </footer>
@@ -475,7 +535,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/02/truffle_react_ipfs/" data-id="cjpb80w7t0003xhyh25by2dkp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/02/truffle_react_ipfs/" data-id="cjpb8m45200043tyhz7zvzx69" class="article-share-link">Share</a>
       
       
     </footer>
@@ -520,7 +580,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/01/hello-world/" data-id="cjpb80w7f0002xhyh4gt367d6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/01/hello-world/" data-id="cjpb8m44q00023tyh82az0wxn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -586,7 +646,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/28/golang面试题/" data-id="cjpb80w7d0001xhyhhhdfsf4q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/28/golang面试题/" data-id="cjpb8m44k00003tyhq1u3o6bl" class="article-share-link">Share</a>
       
       
     </footer>
