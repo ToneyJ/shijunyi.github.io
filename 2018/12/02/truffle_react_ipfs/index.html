@@ -12,15 +12,14 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Truffle Introduction  一、安装truffle12cnpm install -g truffletruffle version 二、创建项目123mkdir truffleProjectcd truffleProjecttruffle init 三、添加合约代码1在contracts文件夹下，创建合约文件，添加代码 四、编译部署在巧克力合约1234truffle compile">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2018/12/Library/Application%20Support/typora-user-images/image-20181128211605417.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/Library/Application%20Support/typora-user-images/image-20181129094808026.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/Library/Application%20Support/typora-user-images/image-20181129101226738.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/Library/Application%20Support/typora-user-images/image-20181129101252417.png">
-<meta property="og:updated_time" content="2018-12-02T06:22:11.139Z">
+<meta property="og:updated_time" content="2018-12-02T06:23:51.283Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="truffle_web3_ipfs">
 <meta name="twitter:description" content="Truffle Introduction  一、安装truffle12cnpm install -g truffletruffle version 二、创建项目123mkdir truffleProjectcd truffleProjecttruffle init 三、添加合约代码1在contracts文件夹下，创建合约文件，添加代码 四、编译部署在巧克力合约1234truffle compile">
-<meta name="twitter:image" content="http://yoursite.com/2018/12/Library/Application%20Support/typora-user-images/image-20181128211605417.png">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/Library/Application%20Support/typora-user-images/image-20181129094808026.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -85,7 +84,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/shijunyi.github.io/archives/2018/12/">December 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/shijunyi.github.io/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/shijunyi.github.io/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/shijunyi.github.io/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -95,6 +94,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/shijunyi.github.io/2018/12/05/GO语言并发编程——sync.WaitGroup使用/">(no title)</a>
+          </li>
         
           <li>
             <a href="/shijunyi.github.io/2018/12/02/truffle_react_ipfs/">truffle_web3_ipfs</a>
@@ -170,8 +173,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle test</span><br></pre></td></tr></table></figure>
 <h1 id="Truffle-React"><a href="#Truffle-React" class="headerlink" title="Truffle_React"></a>Truffle_React</h1><p>##一、集成react</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">truffle unbox react</span><br><span class="line">truffle develop</span><br><span class="line">compile</span><br><span class="line">migrate</span><br><span class="line">换一个终端</span><br><span class="line">npm run start</span><br></pre></td></tr></table></figure>
-<h2 id="二、refs"><a href="#二、refs" class="headerlink" title="二、refs"></a>二、refs</h2><p><img src="../../Library/Application Support/typora-user-images/image-20181128211605417.png" alt="image-20181128211605417"></p>
-<h1 id="web3-js"><a href="#web3-js" class="headerlink" title="web3.js"></a>web3.js</h1><h2 id="二、定义"><a href="#二、定义" class="headerlink" title="二、定义"></a>二、定义</h2><p>教程：<a href="https://github.com/ethereum/wiki/wiki/JavaScript-API#web3ethaccounts" target="_blank" rel="noopener">官方文档</a></p>
+<h2 id="二、refs"><a href="#二、refs" class="headerlink" title="二、refs"></a>二、refs</h2><h1 id="web3-js"><a href="#web3-js" class="headerlink" title="web3.js"></a>web3.js</h1><h2 id="二、定义"><a href="#二、定义" class="headerlink" title="二、定义"></a>二、定义</h2><p>教程：<a href="https://github.com/ethereum/wiki/wiki/JavaScript-API#web3ethaccounts" target="_blank" rel="noopener">官方文档</a></p>
 <p>web3.js是开发以太坊去中⼼心化应⽤用(DApp)必备的JavaScript库，提供了了⽤用于与geth通讯的<br>JavaScript API，web3.js使⽤用了了JSON-RPC协议与geth进⾏行行通信。<br>JSON-RPC是⼀一个⽆无状态，轻量量级的远程调⽤用协议(RPC)，允许使⽤用http，socket等协议进⾏行行<br>通讯，使⽤用JSON作为数据格式。<br>Web3.js可以与所有⽀支持JSON-RPC的节点进⾏行行通信，包括以太坊⽣生态中的其他节点，如<br>Whisper(⼀一个集成以太坊的⾮非实时性消息系统)和Swarm(⼀一个去中⼼心化的存储系统)<br>Web3.js⽆无法直接连接到以太坊⽹网络， 只能连接到以太坊节点，如:geth</p>
 <h2 id="三、安装web3"><a href="#三、安装web3" class="headerlink" title="三、安装web3"></a>三、安装web3</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install web3 --save</span><br></pre></td></tr></table></figure>
 <h3 id="版本问题"><a href="#版本问题" class="headerlink" title="版本问题"></a>版本问题</h3><p>旧版本（0.xx）</p>
@@ -443,7 +445,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/02/truffle_react_ipfs/" data-id="cjp6i0n5i0002rwyhz5vfo2jh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/02/truffle_react_ipfs/" data-id="cjpb80w7t0003xhyh25by2dkp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -451,6 +453,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/shijunyi.github.io/2018/12/05/GO语言并发编程——sync.WaitGroup使用/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
   
   
     <a href="/shijunyi.github.io/2018/12/01/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
